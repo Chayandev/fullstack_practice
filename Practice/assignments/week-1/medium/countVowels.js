@@ -7,6 +7,13 @@
 
 function countVowels(str) {
     // Your code here
+    let count=0;
+    let vowels=['a','e','i','o','u','A','E','I','O','U'];
+  for(e of str) {
+      if(vowels.includes(e))
+        count++;
+    }
+   return count;
 }
-
+console.log(countVowels("Chayamn"));
 module.exports = countVowels;
