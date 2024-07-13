@@ -1,0 +1,42 @@
+what is ECMAScript : IS a scripting language specification on which js is based.
+
+guidelines for making compiler for scripting language
+
+j
+s compiler : v8 (chrome) (c)
+             spidermonkey - used by FireFox (C+Rust)
+
+Node.js is the framework used fo r backend code.
+e
+Bun :- other than the hs is isngle threaded node js is slow (multiple reason) some smart people they wanted to rewrute the js runtinme for the backend and intorduced bun
+
+it is singlingicantly faster.
+
+What can wea do with Node.js
+
+1. CLI
+2. createge  video player
+3. create an  game 
+4. create a HTTP server
+
+http : hyper text transfer protocol , a protocol that is defined for machine to communicate specifically for websites it is the most common way for the website's frontend to talk to its backend
+
+//common  methods you can send to your backend sever
+
+1.GET
+2.POST
+3.PUT
+4.DELET
+
+status codes:
+200 - everyting is ok
+404 - page/route not found
+403 - Authentication issues
+500 - Internal SErver error
+
+
+
+
+
+
+
