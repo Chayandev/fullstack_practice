@@ -1,0 +1,17 @@
+pwd - print work directory
+cd - change directory
+ls - listing all the folder/files in currect directory
+mkdir - to create a new directory
+touch - to create a file
+cat - to print content of a file
+vi - to edit file
+mv - move file form one folder ot other
+cp - copy file
+
+nvm - 
+npm - 
+node 
+
+
+
+cd../../.. to move back 3 folder 
