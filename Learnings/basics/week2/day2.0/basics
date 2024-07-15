@@ -33,7 +33,7 @@ status codes:
 404 - page/route not found
 403 - Authentication issues
 500 - Internal SErver error
-411 - input were incorect
+411 - input were incorec
 
 
 

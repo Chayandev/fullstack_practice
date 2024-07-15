@@ -18,7 +18,7 @@ app.use(express.json())
 // })
 
 //  app.get('/route-handler',(req,res)=>{
-//     res.json({
+//     res.json(
 //         name:"Chayan",
 //         age:20
 //     })
