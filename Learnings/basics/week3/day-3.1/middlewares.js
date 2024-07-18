@@ -79,6 +79,11 @@ app.use(express.json())
 app.post('/health-checkup-zod', (req, res) => {
     const kidneys = req.body.kidneys;
     const response = schema.safeParse(kidneys);
+    /*
+      parse is used to simply pasrese without any exception , 
+      but when it needs to thorugh any exception need safeparse
+    */
+
     console.log(kidneys)
     res.send({
         response

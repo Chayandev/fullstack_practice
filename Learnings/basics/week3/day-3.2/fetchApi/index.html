@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampel Fetch Api</title>
+</head>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- <script src="script.js"></script> -->
+
+<body>
+    <script>
+        /*
+        function getAnimalData() {
+            //alert("Hi There!")
+            fetch("https://fakerapi.it/api/v1/persons") //returns promise   , this is bu default the get call
+                .then((response) => {
+                    response.json()  //returns promise
+                        .then((finalData) => {
+                            console.log(finalData)
+                        })
+                })
+        }
+      */
+        //or
+
+        async function getAnimalData() {
+            const response = await fetch("https://fakerapi.it/api/v1/persons");
+            const finalData = await response.json();
+
+            console.log(finalData);
+
+        }
+    </script>
+    <button onclick="getAnimalData()">Get Data</button>
+</body>
+
+</html>
