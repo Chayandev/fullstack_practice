@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+
+.calculator {
+    width: 50%;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    /* Adjust height as needed to space items */
+    padding: 20px;
+    /* Add padding if needed */
+    background-color: aliceblue;
+    box-shadow: 4px 4px 6px;
+    border: 1px solid #ccc;
+    /* Optional: add a border for better visibility */
+}
+
+.calculator input,
+.calculator button {
+    width: 80%;
+    /* Adjust width as needed */
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.calculator button {
+    padding: 10px 20px;
+    background-color: purple;
+    border-radius: 4px;
+    color: white;
+}
+
+.calculator #finalSum{
+     font-size: 1.5rem;
+     color: tomato;
+     font-weight: bold;
+}
