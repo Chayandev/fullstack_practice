@@ -6,9 +6,16 @@ body {
     width: 100%;
     margin: 0;
 }
-
+.calculators{
+    width: 90%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content:center;
+}
 .calculator {
-    width: 50%;
+    width: 40%;
     margin: auto auto;
     display: flex;
     flex-direction: column;
@@ -16,14 +23,16 @@ body {
     align-items: center;
     height: 200px;
     /* Adjust height as needed to space items */
-    padding: 20px;
+    padding: 30px 20px;
     /* Add padding if needed */
     background-color: aliceblue;
     box-shadow: 4px 4px 6px;
     border: 1px solid #ccc;
     /* Optional: add a border for better visibility */
 }
-
+#simple-interest{
+    padding: 40px 20px;
+}
 .calculator input,
 .calculator button {
     width: 80%;
@@ -39,7 +48,7 @@ body {
     color: white;
 }
 
-.calculator #finalSum{
+.calculator .result{
      font-size: 1.5rem;
      color: tomato;
      font-weight: bold;

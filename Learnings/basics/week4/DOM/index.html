@@ -10,13 +10,21 @@
 
 <body>
 
-    <div class="calculator">
-        <input type="text" id="firstNumber" placeholder="First Number"> </input>
-        <input type="text" id="secondNumber" placeholder="Second Number"></input>
-        <button name="calculate">Calculate Sum</button>
-        <div id="finalSum">Hi there you will se the sum here</div>
+    <div class="calculators">
+        <div class="calculator">
+            <input type="text" id="firstNumber" placeholder="First Number"> </input>
+            <input type="text" id="secondNumber" placeholder="Second Number"></input>
+            <button name="calculate">Calculate Sum</button>
+            <div class="result" id="finalSum">Hi there you will se the sum here</div>
+        </div>
+        <div class="calculator" id="simple-interest">
+            <input type="text" id="primaryAmount" placeholder="Primary amount"> </input>
+            <input type="text" id="rate" placeholder="Rate"></input>
+            <input type="text" id="time" placeholder="Tiem"></input>
+            <!-- <button name="calculate">Calculate Interest</button> -->
+            <div class="result" id="finalResult">Hi there you will se the sum here</div>
+        </div>
     </div>
-
 
 
     <script src="script.js"></script>
