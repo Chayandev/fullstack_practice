@@ -1,0 +1,7 @@
+1.State : The object that represnt the state of the app , it reprasents the dynamics things in app (things that change)
+for example the vlaue of hte counter
+
+a state change triggers a re-render , a re-render represetns the actual DOM begin manipulated when the state changes
+
+
+
