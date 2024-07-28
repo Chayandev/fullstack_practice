@@ -1,0 +1,23 @@
+{
+  "name": "day2",
+  "version": "1.0.0",
+  "description": "day2_advance_backend",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Data",
+    "Modeling",
+    "mongoose",
+    "backend"
+  ],
+  "author": "Chayandev Bera",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1",
+    "nodemon": "^3.1.4"
+  }
+}
