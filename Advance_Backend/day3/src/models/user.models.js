@@ -54,7 +54,7 @@ const userSchema = new Schema(
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  this.password = bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
@@ -87,4 +87,9 @@ userSchema.methods.generateRefreshToken = function () {
     },
   );
 };
+
+//acess tokens are short lived but refresh tokens are long lived , becasue when you have acess token , you can take this in case of authentication , if i set the acesstoken less time i.e 15 min , that means user's log in time will expire in 15 min , so user have to log in again ,
+// refresh token saved in db and also in the server , so if you haev reresh token no need to login every time while acess token expire, so you jst  have to hit a end point , if the refresh token sin deatabse dn your tone is same then it can be done easily
+//while the short lived acces token get expired then the refresh token is used to get new acess token
+
 export const User = mongoose.model("User", userSchema);
