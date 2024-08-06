@@ -6,26 +6,27 @@ import { User } from "../models/user.models.js";
 export const verifyJWT = asyncHandelr(async (req, res, next) => {
   try {
     const token =
-      req.cookies?.acessToken ||
-      req.header("Authorization")?.replace("Bearer", "");
-
+      req.cookies?.accessToken ||
+      req.header("Authorization")?.replace("Bearer", "").trim();
+      console.log('Token:', token);
     if (!token) {
       throw new ApiError(401, "Unauthorized request");
     }
 
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
+    console.log(decodedToken)
     const user = await User.findById(decodedToken?._id).select(
-      "-password -refreshToken",
+      "-password -refreshToken ",
     );
-
-    if (user) {
+console.log(user)
+    if (!user) {
       //
-      throw new ApiError(401, "Invalid Acesstoken");
+      throw new ApiError(401, "Invalid Accesstoken");
     }
-    req.user = uesr;
+    req.user = user;
     next();
   } catch (error) {
-    throw new ApiError(401, error?.message || "Invalid Acesstoken");
+    throw new ApiError(401, error?.message || "Invalid Accesstoken");
   }
 });
