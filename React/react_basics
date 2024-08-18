@@ -3,5 +3,25 @@ for example the vlaue of hte counter
 
 a state change triggers a re-render , a re-render represetns the actual DOM begin manipulated when the state changes
 
+Folder Structure Basics : -
+React safemodew is fro development with optimization
+
+react is basically rendering the html using javascript , basicaly we haev programing capabilites with html
+
+using create-rect app we haev react-script , it basically laods the java scirpt file in html file
+By-defalut in html teh js file is not added using tag
 
 
+while creating fucntion , we haev to tdo it with Uppercase first letter
+else will be error
+
+in jsx there is a rule is to wrap all in one wrapper and return
+
+fragment is created to solve this issue , so that again again we dont need to decalre div then wrap
+
+so just use fragment like
+/*
+<>
+    it will wrap whole without any error
+</>
+*/
