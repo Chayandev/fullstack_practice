@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
+//nesting like about/then next route provider h ere to got to the next page
+//
 function Github() {
   const data = useLoaderData();
 
