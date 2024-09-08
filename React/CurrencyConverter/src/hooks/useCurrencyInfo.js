@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function useCurrencyInfo(date,currency) {
+function useCurrencyInfo(currency) {
   //when one component is unmounted and it's  life cycle get triggered then we use the useEffect
   const [data, setData] = useState({});
   useEffect(() => {
