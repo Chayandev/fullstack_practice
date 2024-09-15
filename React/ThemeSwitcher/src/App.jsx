@@ -23,7 +23,7 @@ function App() {
   return (
     <ThemeProvider value={{ themeMode, lightTheme, darkTheme }}>
       <div className="flex items-center justify-center min-h-screen w-screen">
-        <div className="flex flex-col justify-center h-70 w-96">
+        <div className="flex flex-col justify-center h-70 w-96 p-4 ">
           <ToggelButton />
           <CardComponent />
         </div>
