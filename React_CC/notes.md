@@ -63,6 +63,12 @@ By using React.js, you can build modern, **efficient**, and **maintainable** web
 
 JSX stands for **JavaScript XML**. It is a **syntax extension** to JavaScript that allows developers to write HTML-like syntax directly within JavaScript code. JSX provides a cleaner and more intuitive way to describe the structure of the user interface.
 
+**_in JSX using {} syntax we can add any varibale to ou compoents, even we can perfom any mathamatical operation inside this , even we can call fucntion inside this_**
+
+##### React dose not render 'false' 'null', 'undefined' or 'NaN' in the dom , These values , when used in JSX , will result in nothing being displayed.How ever '0' ans empty string(`""`) are exception:
+
+- **`0`** is rendered in the DOM becuase it is considered a valid React node.also the empth string is also considerd as valid node.
+
 ---
 
 ## Why Use JSX?
@@ -88,63 +94,69 @@ JSX stands for **JavaScript XML**. It is a **syntax extension** to JavaScript th
 
 ### Without JSX:
 
-````javascript
+```javascript
 const element = React.createElement(
   "h1",
   { className: "greeting" },
   "Hello, world!"
 );
-
-
+```
 
 # Why Use ESLint?
 
 ## What is ESLint?
+
 **ESLint** is a static code analysis tool for JavaScript and its extensions (e.g., TypeScript, React). It helps identify and fix errors, maintain coding standards, and ensure consistent style.
 
----
-
 ## Key Benefits
+
 1. **Error Prevention**:
+
    - Detects syntax errors, bugs, and anti-patterns before code execution.
 
 2. **Code Consistency**:
+
    - Enforces a uniform coding style across the project or team.
 
 3. **Improved Code Quality**:
+
    - Promotes best practices and clean code.
 
 4. **Real-Time Feedback**:
+
    - Integrates with editors (e.g., VS Code) to show issues as you type.
 
 5. **Automation**:
    - Automatically fixes many issues using the `--fix` option.
-
 
 # State and Props in React
 
 ## **State** in React
 
 ### What is State?
+
 - **State** is a built-in React object used to store data that can change over time within a component.
 - It represents the **current condition or data** of a component and can change based on user actions or events.
 
 ### Characteristics of State:
+
 - **Mutable**: State can be updated using `setState()` in class components or `useState` in functional components.
 - **Triggers Re-renders**: When the state changes, React automatically re-renders the component to reflect the updated UI.
-
 
 # **Props** in React
 
 ## What are Props?
+
 - **Props** (short for **properties**) are inputs to a React component. They allow data to be passed from a **parent component** to a **child component**.
 - Props are **immutable** (cannot be changed by the child component), meaning the child component can only read and use them.
 
 ## Characteristics of Props:
+
 - **Read-only**: The child component receives props from its parent but cannot modify them. Props are passed down from parent to child in a unidirectional flow.
 - **Used for Communication**: Props allow data and methods to be shared between components, enabling interaction between parent and child components.
 
 ## How to Pass Props:
+
 Props are passed from a parent component to a child component like attributes in HTML. In the child component, you can access these props via the `props` object.
 
 ### Example:
@@ -154,18 +166,78 @@ Props are passed from a parent component to a child component like attributes in
 function Parent() {
   return <Child name="Alice" age={25} />;
 }
+```
 
+```javascript
 // Child Component
 function Child(props) {
-  return <h1>Hello, my name is {props.name} and I am {props.age} years old.</h1>;
+  return (
+    <h1>
+      Hello, my name is {props.name} and I am {props.age} years old.
+    </h1>
+  );
+}
+
+export default Parent;
+```
+
+## Passing JSX in Props
+
+In React, we can pass **JSX** as a prop to child components, just like any other prop. This allows us to send reusable UI elements to be rendered dynamically in the child component.
+
+### Example
+
+```jsx
+// Parent Component
+import React from "react";
+import Child from "./Child";
+
+function Parent() {
+  return (
+    <div>
+      <Child content={<p style={{ color: "blue" }}>This is JSX passed as a prop!</p>} />
+    </div>
+  );
 }
 
 export default Parent;
 
+// Child Component
+import React from "react";
 
+function Child({ content }) {
+  return <div>{content}</div>;
+}
 
+export default Child;
+```
 
-````
+##### There is another thing in props , props.children by this we can access the derived jsx in the openign and closing bracked of child compoent, nested element.
+
+## Loops in JSX
+
+we can't use for loops in JSC , we have to use .map function insted.And we have key , else react will complaint against it , because when react will render it can easyily understand usign the key which one element is chanegd.
+
+```javascript
+example;
+{
+  students.map((student) => {
+    return <li key={student}>student</li>;
+  });
+}
+```
+
+## class vs className in React Styling
+
+React has the `class` keyword reserved, so use `className` instead. Otherwise, React will give a warning.
+
+## Event Handling in React.js
+
+Event handling in React follows a similar pattern to standard JavaScript event handling but with some key differences, such as using synthetic events for cross-browser compatibility and providing consistent event handling across different elements and browsers.
+
+### What is SyntheticEvent in React
+
+When you handle an event in React, like clicking a button or typing in an input box, React wraps native browser events in something called `SyntheticEvent`. The `SyntheticEvent` is a wrapper around the browser's native event, ensuring the events behave consistently across browsers.
 
 # **Hooks** in React
 
@@ -298,10 +370,10 @@ Unmounting is the phase where a React component is removed from the DOM, usually
 ### Example of Two-Way Data Binding
 
 ```javascript
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function TwoWayBinding() {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e) => {
     setInputValue(e.target.value); // Update state on user input
@@ -320,12 +392,155 @@ function TwoWayBinding() {
 }
 
 export default TwoWayBinding;
+```
 
-### e.preventDefault() is used int the submit of form while click on button to prevent the default behaviour of the form submit , which is the reloading of page that means loss of ui what ever i have typed in the input field.
+##### e.preventDefault() is used int the submit of form while click on button to prevent the default behaviour of the form submit , which is the reloading of page that means loss of ui what ever i have typed in the input field.
 
 ## What is a Fragment in React?
 
 A **Fragment** in React is a lightweight wrapper that allows you to group multiple elements without adding extra nodes to the DOM. It is often used when you need to return multiple elements from a component without introducing an additional wrapper element, such as a `<div>`, which could affect the layout or styling.
 
-using <> </> or <React.Fragment> </React.Fragment>
+### why in react fucntional component multiple eelement cannot be returned?
+
+Because in jsx he fucntion basically return in object form ,and a fucntion cannot return multiple object so that is why we need ot wrap them in fragment.
+
+using <> </> or <React.Fragment> </React.Fragment> this basically remove the unwanted nodeed like if e wrap using div this will create a extra node , so using fragment we can remove this unwanted node.
+
+## React Router DOM
+
+In case of normal routing like html ancer tag the routing is possible but each time the navigation is done and moving to one page to other the broswer is reloading the page , that is not somthing we want in a single page application , this viloate the single page application ui.
+
+so using **react-router-dom(one external libary)** we can achive the routing in react app.
+
+this allow the navigation/routing form one page to other page it don't refreash or relaod the page.
+
+### Link vs NavLink Tag
+
+NavLink tag will give one property called active tag, but Link tag don't give this , this active property can be used for tracking the path , so that we can use it in ui manipulation.
+
+### useNavigateHook
+
+This hook provide the naviation feature while clicking on button.
+
+# Removing Navigation Stack in React Router DOM
+
+In **React Router DOM**, to prevent stacking navigation history when navigating with `NavLink` or programmatically, you can use the `replace` property. This improves user experience by replacing the current entry in the navigation stack instead of creating a new one.
+
+## Using `replace` with `NavLink`
+
+```jsx
+<NavLink to="/about" replace className="nav-link">
+  About
+</NavLink>
 ```
+
+# Redux (Why)
+
+In small apps, you can manage data using React's state, But as the app grows it's become tricky to pass data between components.
+
+Redux solves this problem by creaeting a **centralized store\*** that holds all he data. This store can be accessed and updated by any part of the app.
+
+Redux is a library that helps manage data (also knwn as 'state') in large React apps.It allows us to keep all out app's data in a single place, known as **_Redux Store_**, making it easy to share and update data across diffrent parts of the app.
+
+- Proive Golbal access and predictable updates
+- Provie powerfull tools for debugging,insepecting state,a nd replaying actions
+  -Middlwware like Thunk or saga handles async task, keeping the code clean.
+
+### How Redux works
+
+**Store**: This is here Redux keeps all your data, keep it safe.Everything you do with Redux-whether adding,removing,updating.
+**Action**: This is an object, which tell the redux what to do (like adding a task).
+
+```javascript
+{
+  type: "counter/add",
+  payload:{
+    incrementBy:10,
+  }
+}
+
+```
+
+**Reducers**: How to do, it actuallu chnage the data in the store based on the actions.
+
+```javascript
+export const counterReducer=(state=initialState,action)=>{
+  switch(action.type){
+    case "counter/add":
+      return {..state,value: state.value + action.payload.incrementBy};
+      default:
+        return state;
+  }
+}
+```
+
+### Redux: Reducer Function
+
+A reducer is a fucntion that decides how the state should change based on the action. The reducer takes the current state and an action, and return a new state.
+
+A thing to remember:
+
+1. Reducer must always return a new state.
+2. They should never modify the old sate directly.
+
+### Reduc Store
+
+The store is where Redux keeps all your app's data.
+
+it's like a database for your app, but it's only for managing data in memory(not saving it parmanently).
+
+```javascript
+import { createStore } from "redux";
+const store = createStore(reducer);
+// The ceate store method creaes te redux store using a reducer fucntion that handles how the state chanegs teh response to actions.
+```
+
+### Dispath an Action
+
+dispatch() is used to send actions to the Redux Store. An action describes what chanegs you want to make the state (such as adding a task).
+
+```javascript
+store.dispatch({ type: "ACTION_TYPE", paylaod: data });
+```
+
+##### getState() retrives the current state of teh Redux store.
+
+This is useful for accessing the state after it has been updated or monitor chanegs.
+
+---
+
+# Redux Toolkit
+
+Redux Toolkit is an official toolset from the Redux team that makes working with Redux easier and less time-consuming.
+
+Instead of doing everything manually—like creating actions, reducers, and managing state immutability—RTK provides built-in functions that handle most of that work for you.
+
+In simpler terms, it's a shortcut that helps you manage your app's state with less code and fewer mistakes. The goal is to make Redux more beginner-friendly and reduce the amount of code you write.
+
+- **Less boilerplate code**: Normally, with Redux, you need to write action types, action creators, and reducers separately. With RTK's `createSlice`, you can handle all of this in one place with fewer lines of code.
+
+- **Better async logic**: Handling async tasks like fetching data is much simpler with RTK's `createAsyncThunk`. It automatically handles loading, success, and error states, so you don't have to write them manually.
+
+- **Easier to work with state**: RTK uses a tool called `immer` under the hood, which allows you to write state changes as if you're mutating the state directly. However, it still adheres to Redux's rule of immutability (not changing the original state).
+
+### RTK `createSlice`
+
+In Redux Toolkit, `createSlice` is a utility function that simplifies the process of creating a Redux slice of state. It combines actions and reducers into a single object, making the setup of Redux state management more streamlined and organized.
+
+A slice is essentially a section of the Redux state, along with the actions and reducers that operate on it. Using `createSlice`, you can define:
+
+- The initial state of the slice.
+- Reducers that define how the state changes in response to actions.
+- Action creators automatically generated based on reducer names.
+
+##### to connect react app redux toolkit need to install `react-redux` from npm
+
+### Access Redux State in React using `useSelector`
+
+Use the `useSelector` hook to read data from the Redux store.
+
+```javascript
+const count = useSelector((state) => state.property);
+```
+**Selector function:** We define a selector function that takes the entire Redux store as an argument and returns a specific piece of data we need.
+
