@@ -321,6 +321,8 @@ function TwoWayBinding() {
 
 export default TwoWayBinding;
 
+### e.preventDefault() is used int the submit of form while click on button to prevent the default behaviour of the form submit , which is the reloading of page that means loss of ui what ever i have typed in the input field.
+
 ## What is a Fragment in React?
 
 A **Fragment** in React is a lightweight wrapper that allows you to group multiple elements without adding extra nodes to the DOM. It is often used when you need to return multiple elements from a component without introducing an additional wrapper element, such as a `<div>`, which could affect the layout or styling.
