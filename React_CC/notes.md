@@ -170,6 +170,7 @@ export default Parent;
 # **Hooks** in React
 
 ## What are Hooks?
+
 - **Hooks** are functions in React that allow you to use **state** and **other React features** in functional components.
 - Hooks were introduced in React 16.8 to allow functional components to manage state and side effects, which were previously only possible in class components.
 - Hooks enable writing more **concise** and **clean** code by allowing functional components to do everything that class components can.
@@ -177,8 +178,9 @@ export default Parent;
 ## Commonly Used Hooks
 
 ### 1. **useState()**
+
 - `useState` is used to add **state** to a functional component. It returns a state variable and a function to update that state.
-  
+
   A **side effect** in programming refers to any operation that affects something outside the scope of the function being executed. In React, side effects are operations that **interact with the outside world** or **modify things outside the component** that don't directly affect the output (UI) of the component.
 
 # **What is a Side Effect in React?**
@@ -194,6 +196,7 @@ export default Parent;
 # **How to Handle Side Effects in React**
 
 1. **Use `useEffect`:**
+
    - Manage side effects in functional components using the `useEffect` hook.
    - Example:
      ```javascript
@@ -203,6 +206,7 @@ export default Parent;
      ```
 
 2. **Dependency Array:**
+
    - Specify dependencies to control when the side effect runs.
    - Example:
      ```javascript
@@ -226,17 +230,21 @@ export default Parent;
 # **Issues When Side Effects Are Not Handled Properly**
 
 1. **Performance Issues:**
+
    - Unnecessary re-renders if side effects run without proper dependency control.
    - Resource leaks (e.g., intervals or listeners not cleaned up).
 
 2. **Incorrect Behavior:**
+
    - Infinite loops caused by effects that repeatedly trigger state updates.
    - Stale data when dependencies are not specified correctly.
 
 3. **Memory Leaks:**
+
    - Forgetting cleanup can lead to accumulated resources and degrade performance.
 
 4. **Hard-to-Debug Bugs:**
+
    - Unexpected triggers and inconsistent UI updates make debugging difficult.
 
 5. **Poor User Experience:**
@@ -245,6 +253,7 @@ export default Parent;
 ---
 
 # **Key Takeaways**
+
 - Always use `useEffect` to manage side effects.
 - Include a proper dependency array to control when the effect runs.
 - Return a cleanup function for cleanup of intervals, subscriptions, and listeners.
@@ -253,9 +262,11 @@ export default Parent;
 ## How `useEffect` Handles Side Effects?
 
 ### 1. **Runs After Render**
+
 `useEffect` is called **after the render phase**, ensuring that side effects don’t block the UI from rendering. React uses the `useEffect` hook to separate **render logic** (what the UI looks like) from **side effect logic** (what it does).
 
 ### 2. **Dependency Array for Control**
+
 The second argument of `useEffect` is a **dependency array** that determines when the effect should run. Based on this, React optimizes the execution of side effects.
 
 - **No Dependencies (`useEffect(() => {...})`)**: Runs after every render.
@@ -263,10 +274,56 @@ The second argument of `useEffect` is a **dependency array** that determines whe
 - **Specific Dependencies (`useEffect(() => {...}, [dependency])`)**: Runs when the specified dependency changes.
 
 ## **Mounting**
+
 ### What is Mounting?
-Mounting is the phase where a React component is created and added to the DOM for the first time. 
+
+Mounting is the phase where a React component is created and added to the DOM for the first time.
 
 ## **Unmounting**
+
 ### What is Unmounting?
+
 Unmounting is the phase where a React component is removed from the DOM, usually when it is no longer needed or replaced.
 
+## What is Two-Way Data Binding in React?
+
+**Two-way data binding** in React is a technique where data flows in both directions: from the component's state to the UI (view), and from the UI to the component's state. This allows for synchronization between the state and the UI, ensuring that when one changes, the other is updated automatically.
+
+### How Two-Way Data Binding Works in React:
+
+1. **State**: The data that controls the UI.
+2. **Event Handlers**: Functions that handle user interactions (e.g., input changes) and update the state.
+3. **Controlled Components**: In React, when an input element's value is controlled by the state, it is known as a controlled component. This enables two-way data binding.
+
+### Example of Two-Way Data Binding
+
+```javascript
+import React, { useState } from 'react';
+
+function TwoWayBinding() {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value); // Update state on user input
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={inputValue} // State controls the input value
+        onChange={handleChange} // Updates state on user input
+      />
+      <p>You typed: {inputValue}</p> {/* Display state */}
+    </div>
+  );
+}
+
+export default TwoWayBinding;
+
+## What is a Fragment in React?
+
+A **Fragment** in React is a lightweight wrapper that allows you to group multiple elements without adding extra nodes to the DOM. It is often used when you need to return multiple elements from a component without introducing an additional wrapper element, such as a `<div>`, which could affect the layout or styling.
+
+using <> </> or <React.Fragment> </React.Fragment>
+```
