@@ -16,6 +16,7 @@ React.js is a **JavaScript library** for building user interfaces, particularly 
 - Instead of re-rendering the entire DOM tree, React:
   1. Compares the Virtual DOM with its previous state using a **diffing algorithm**.
   2. Updates only the necessary parts of the real DOM.
+- The virtual DOM is a programing concept where ans ideal, or virtual representation of a UI is kept in memory and synced with the real DOM by a librabry such as ReactDOM . This process is called **Reconcilation**.
 
 ### 2. Component-Based Architecture
 
@@ -137,11 +138,62 @@ const element = React.createElement(
 
 - **State** is a built-in React object used to store data that can change over time within a component.
 - It represents the **current condition or data** of a component and can change based on user actions or events.
+- State is managed within the components (just like varibels declared in a function). However unlike regualr varibaels , when state chanegs , React Re-renders the componets to reflect these chanegs , keeping the user interface in sync with the data.
 
 ### Characteristics of State:
 
 - **Mutable**: State can be updated using `setState()` in class components or `useState` in functional components.
 - **Triggers Re-renders**: When the state changes, React automatically re-renders the component to reflect the updated UI.
+
+### In state how re-rendering works:
+
+```jsx
+<div>
+  <ParentComponent>
+    <Child1 />
+    <Child2 />
+  </ParentComponent>
+  <SiblingComponent />
+</div>
+```
+
+### React Rendering Behavior
+
+- **Initial Render:** When the `App` component first renders, React renders `ParentComponent`, `Child1`, `Child2`, and also `SiblingComponent`.
+
+- **State Change in ParentComponent:** Suppose there is a state change in `ParentComponent`. React will re-render `ParentComponent` and its children (`Child1`, `Child2`).
+
+- **Components Outside:** `SiblingComponent` is not affected by the state change in `ParentComponent`, so it will not be re-rendered.
+
+### React Strict Mode and Double Rendering
+
+#### React Strict Mode
+
+React Strict Mode is a development-only feature designed to identify potential issues in a React application. It doesn't affect the production build but helps developers write more robust and future-proof code.
+
+Key features of React Strict Mode:
+
+- Identifies unsafe lifecycle methods.
+- Warns about legacy string ref API usage.
+- Detects unexpected side effects in components.
+- Ensures strict adherence to best practices for concurrent rendering.
+
+To enable it, wrap your application (or part of it) with the `<React.StrictMode>` component:
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+---
 
 # **Props** in React
 
@@ -216,7 +268,7 @@ export default Child;
 
 ## Loops in JSX
 
-we can't use for loops in JSC , we have to use .map function insted.And we have key , else react will complaint against it , because when react will render it can easyily understand usign the key which one element is chanegd.
+we can't use for loops in JSX , we have to use .map function insted.And we have key , else react will complain against it , because when react will render it can easyily understand usign the key which one element is chanegd.
 
 ```javascript
 example;
@@ -227,17 +279,86 @@ example;
 }
 ```
 
-## class vs className in React Styling
+### class vs className in React Styling
 
 React has the `class` keyword reserved, so use `className` instead. Otherwise, React will give a warning.
 
-## Event Handling in React.js
+---
+
+# Event Handling in React.js
 
 Event handling in React follows a similar pattern to standard JavaScript event handling but with some key differences, such as using synthetic events for cross-browser compatibility and providing consistent event handling across different elements and browsers.
 
 ### What is SyntheticEvent in React
 
 When you handle an event in React, like clicking a button or typing in an input box, React wraps native browser events in something called `SyntheticEvent`. The `SyntheticEvent` is a wrapper around the browser's native event, ensuring the events behave consistently across browsers.
+
+# Event Propagation (In React)
+
+Event propagation refers to the process of how events propagate or travel through the DOM hierarchy.
+
+In JavaScript, there are two phases of event propagation: **Capturing phase** and **Bubbling phase**.
+
+### Capturing Phase
+
+The event starts from the root of the DOM and goes down to the target element.
+
+### Target Phase
+
+The event reaches the target element.
+
+### Bubbling Phase
+
+The event starts from the target element and bubbles up to the root of the DOM.
+
+### Event Propagation in React
+
+- In React.js, event propagation refers to the process by which events propagate or "bubble" up from the target element through its parent elements in the DOM hierarchy. React follows the same event propagation model as regular JavaScript DOM events.
+
+- When an event occurs on an element in a React component, such as a button click, the event is first captured at the target element and then bubbles up through the parent elements, triggering any event handlers that have been defined along the way. This allows you to handle events at different levels of the component hierarchy.
+
+- React provides a way to stop event propagation using the `stopPropagation` function, which can be called on the event object within an event handler. This ensures that the event doesn't bubble up further in the DOM, allowing only the target element to handle the event.
+
+### Example
+
+Here is an example to illustrate event propagation in React:
+
+```jsx
+import React from "react";
+
+function ParentComponent() {
+  const handleParentClick = () => {
+    console.log("Parent clicked");
+  };
+
+  const handleChildClick = (event) => {
+    event.stopPropagation(); // Stops event from bubbling to the parent
+    console.log("Child clicked");
+  };
+
+  return (
+    <div
+      onClick={handleParentClick}
+      style={{ padding: "20px", border: "1px solid black" }}
+    >
+      Parent Component
+      <button onClick={handleChildClick} style={{ margin: "10px" }}>
+        Child Button
+      </button>
+    </div>
+  );
+}
+
+export default ParentComponent;
+```
+
+#### Explanation
+
+- When the **Parent Component** is clicked, the `handleParentClick` function will log "Parent clicked".
+- When the **Child Button** is clicked, the `handleChildClick` function will log "Child clicked" and stop the event from propagating to the parent. As a result, "Parent clicked" will not be logged in this case.
+- If we wan the capturing phase behaviour here we have to mention the event as **onClickCapture** then give the fucntion reference.
+
+---
 
 # **Hooks** in React
 
@@ -252,20 +373,95 @@ When you handle an event in React, like clicking a button or typing in an input 
 ### 1. **useState()**
 
 - `useState` is used to add **state** to a functional component. It returns a state variable and a function to update that state.
+- state valeus dose not reset to its initital value on re-rener
 
-  A **side effect** in programming refers to any operation that affects something outside the scope of the function being executed. In React, side effects are operations that **interact with the outside world** or **modify things outside the component** that don't directly affect the output (UI) of the component.
+```javascript
+const [count, setCount] = useState(0);
+//count is initialized to 0
+//button click increment fucntion is called
+//setCount(count+1) updates to count 1.
+// React re-renders the componets.(when user click button for the 2nd tiems)
+```
 
-# **What is a Side Effect in React?**
+#### React.js State Comparison and Batching
+
+- State Comparison with `Object.is()`
+  React.js compares the previous state with the new state using the `Object.is()` method. If it finds that both states are the same, it skips re-rendering the component. This optimization ensures efficient rendering by avoiding unnecessary updates.
+
+- State Batching in Event Handlers
+  React.js batches all `setState()` calls made inside event handlers and processes them at the same time. The state is not updated immediately; instead, these updates are scheduled and processed at a specific time to optimize performance and avoid multiple re-renders.And if we tyr to access the value immmediatly after setting a state , then you will get old values as its asynchronous.
+
+**Derived State** is any state that can be computed based on other state or props. It is not stored directly in the componets's state but is calculated when needed. THis approch helps avoid duplication and keeps the state simpler and more manageable.
+
+**Lifting the State up in React**
+In react the data flows in top to bottom , we can only pass data form parent to child.
+
+- data passing from child to parent is not possible
+- data passing form child to child is not possible
+
+##### To resolve this issue we haev to lift the state varible up to the common parent, so that , that can be shared to other childs.
+
+### Controlled and Uncontrolled Components in React
+
+##### Controlled Components
+
+A **controlled component** is a component where React manages the form element's state. The form element's value is controlled by the `state`, and any changes to the value are handled via event handlers.
+
+###### Key Features:
+
+- The `value` of the input is determined by React's `state`.
+- Changes to the input trigger an `onChange` event handler, which updates the state.
+- Ensures a single source of truth for form data.
+
+###### Example:
+
+```jsx
+function ControlledComponent() {
+  const [value, setValue] = React.useState("");
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  return <input type="text" value={value} onChange={handleChange} />;
+}
+```
+
+##### Uncontrolled Components
+
+An uncontrolled component is a component where the form element manages its own state internally. React does not interfere with the value of the form element; instead, a ref is used to access the DOM value.
+
+-- means form data is handles by the DOM itself.
+
+###### Key Features:
+
+- The value is managed by the DOM, not React's state.
+- React provides access to the value through a ref.
+
+### 2. useRef()
+
+- useRef is a React Hook that lets you reference a value that's not needed for rendering.
+- Unlike states, it's directly mutable.
+- You can access value f it's using yourRef.current
+- The useRef() hook prvide a objet which haev the proprty current, by which we can access the current value of reference
+- Uncontrolled componets manage their own state internally , and for this uncontroller compone this hook is used instest of Valinal js dom manipulation techniqe to get reference.
+
+### 3. **useEffect()**
+
+## **What is a Side Effect in React?**
 
 - A **side effect** is any action performed after a component renders, not directly related to updating the UI.
 - Common side effects include:
+
   - Fetching data from an API.
   - Updating the DOM (e.g., document title).
   - Setting up subscriptions (e.g., event listeners, intervals).
 
+- A **side effect** in programming refers to any operation that affects something outside the scope of the function(`pure function`-the fucntion which return the same output as input is given) being executed. In React, side effects are operations that **interact with the outside world** or **modify things outside the component** that don't directly affect the output (UI) of the component.
+
 ---
 
-# **How to Handle Side Effects in React**
+## **How to Handle Side Effects in React**
 
 1. **Use `useEffect`:**
 
@@ -299,7 +495,14 @@ When you handle an event in React, like clicking a button or typing in an input 
 
 ---
 
-# **Issues When Side Effects Are Not Handled Properly**
+### Fetch Data as a Sie Effect
+
+When you fetch data in a React Coomponent, you are performing a side effect because.
+
+- Extrnal Interaction: You are interacting with an external data surce, such as an API or a server.
+- State Updates: The fetched data will usually updae the component's state, causing a re-render.
+
+## **Issues When Side Effects Are Not Handled Properly**
 
 1. **Performance Issues:**
 
@@ -324,7 +527,7 @@ When you handle an event in React, like clicking a button or typing in an input 
 
 ---
 
-# **Key Takeaways**
+### **Key Takeaways**
 
 - Always use `useEffect` to manage side effects.
 - Include a proper dependency array to control when the effect runs.
@@ -344,6 +547,48 @@ The second argument of `useEffect` is a **dependency array** that determines whe
 - **No Dependencies (`useEffect(() => {...})`)**: Runs after every render.
 - **Empty Dependencies (`useEffect(() => {...}, [])`)**: Runs only once when the component mounts.
 - **Specific Dependencies (`useEffect(() => {...}, [dependency])`)**: Runs when the specified dependency changes.
+
+# React Hook: `useId()`
+
+The `useId` hook in React is a utility that generates unique IDs for component instances. These IDs are particularly useful in scenarios where you need to associate elements, such as linking a `<label>` with an `<input>` field, ensuring proper accessibility.
+
+---
+
+## Key Features:
+
+- **Unique ID Generation**: Ensures a unique and consistent ID for each component instance.
+- **Accessibility**: Helps in associating elements like `<label>` and `<input>` using the `htmlFor` and `id` attributes.
+- **Avoid for List Keys**: It is not suitable for generating keys in lists, as keys require predictable and stable values across renders.
+
+---
+
+## Syntax:
+
+```jsx
+const id = useId();
+//return a unique iD string associated with their particular useId call in this particular component
+**Example**
+
+function AccessibleForm() {
+  const inputId = useId(); // Generate a unique ID
+
+  return (
+    <div>
+      <label htmlFor={inputId} style={{ display: 'block', marginBottom: '8px' }}>
+        Enter your name:
+      </label>
+      <input
+        id={inputId}
+        type="text"
+        placeholder="Your name"
+
+      />
+    </div>
+  );
+}
+```
+
+**Note:** useId should not be used to generate keys in list.
 
 ## **Mounting**
 
@@ -400,11 +645,26 @@ export default TwoWayBinding;
 
 A **Fragment** in React is a lightweight wrapper that allows you to group multiple elements without adding extra nodes to the DOM. It is often used when you need to return multiple elements from a component without introducing an additional wrapper element, such as a `<div>`, which could affect the layout or styling.
 
-### why in react fucntional component multiple eelement cannot be returned?
+#### why in react fucntional component multiple eelement cannot be returned?
 
 Because in jsx he fucntion basically return in object form ,and a fucntion cannot return multiple object so that is why we need ot wrap them in fragment.
 
 using <> </> or <React.Fragment> </React.Fragment> this basically remove the unwanted nodeed like if e wrap using div this will create a extra node , so using fragment we can remove this unwanted node.
+
+## What is Prop Drilling in React JS
+
+- Props frilling is a pattern in React where you pass data form a parent component to deeply nested child components through multiple layers of components, even if some of the intermediate components don't need the data.
+- As your component tree deepens, prop drilling can make the code more complex and harder to maintain.
+- Main problem in the prop drilling is basically unneessary passing of data in multiple elements.
+
+# ContestAPI In React
+
+**Context API:** A way to pass data through the component tree without having to pass props down manually at every lvel.
+
+- **createContest:** Creates a
+  Context Object. ( The created context will be treated as Componet)
+- **Provider:** A component that provides the context value to its children. This is a property of Context component.We pass the value to Provider, which makes it accessible to child componets.The values should be passed inside `double curly braces {{}}` if it's more than on.
+- **useContext(Consumer):** A hook that allows you to consume a context.
 
 ## React Router DOM
 
@@ -542,5 +802,5 @@ Use the `useSelector` hook to read data from the Redux store.
 ```javascript
 const count = useSelector((state) => state.property);
 ```
-**Selector function:** We define a selector function that takes the entire Redux store as an argument and returns a specific piece of data we need.
 
+**Selector function:** We define a selector function that takes the entire Redux store as an argument and returns a specific piece of data we need.
