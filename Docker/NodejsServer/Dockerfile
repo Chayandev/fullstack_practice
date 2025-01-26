@@ -4,7 +4,7 @@ FROM ubuntu
 # for specific image do the installation
 RUN apt-get update
 RUN apt install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
+RUN curl -sL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
 RUN bash /tmp/nodesource_setup.sh
 RUN apt install -y nodejs
 
@@ -18,4 +18,9 @@ WORKDIR /home/app/
 
 RUN npm install
 
+# Expose the application port
+EXPOSE 5000
+
+# Start the application
+CMD ["node", "index.js"]
 #build the docker image with a name
