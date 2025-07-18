@@ -1,0 +1,35 @@
+
+.btn{
+    margin: 16px;
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    border-radius: 50%;
+    border:1px solid black;
+    font-size: medium;
+    color: white;
+}
+
+.bg-red{
+    background-color: red;
+}
+
+.bg-blue{
+    background-color: blue;
+}
+.bg-black{
+    background-color: black;
+}
+
+.btn:hover{
+    border: 1px solid white;
+}
+
+.count{
+    width: 100px;
+    padding: 10px;
+    background-color: skyblue;
+    color: black;
+    margin: auto;
+    border-radius: 10px;
+}

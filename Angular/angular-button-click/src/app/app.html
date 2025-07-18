@@ -1,0 +1,7 @@
+<h1>{{ title }}</h1>
+<button (click)="handleSum(10, 20)">Sum</button>
+<div (mouseenter)="handleEvents($event)" style="height: 80px; width: 80px; background-color: aquamarine"></div>
+<div (mouseleave)="handleEvents($event)" style="height: 80px; width: 80px; background-color: red"></div>
+<input type="text" (focus)="handleEvents($event)" (input)="handleEvents($event)">
+
+<app-button></app-button>
