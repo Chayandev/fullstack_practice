@@ -1,0 +1,19 @@
+<h1>Signal in Angular</h1>
+<h2>{{count()}}</h2>
+<button (click)="handleCounter('dec')">Decrement</button>
+<button (click)="handleCounter('inc')">Increment</button>
+<!-- or -->
+ <br>
+ <hr>
+ <button (click)="count.set(count()-1)">Decrement</button>
+<button (click)="count.set(count()+1)">Increment</button>
+
+<hr>
+<h3>Computed Signal</h3>
+<h2>Sum(a:{{a()}},b:{{b()}}):{{sum()}}</h2>
+
+<input type="number" (input)="setValueA($event)" placeholder="Enter Value of x">
+
+@if(displayPageTitle){
+<h2 style="background-color:aquamarine;">Page Title based on Effect</h2>
+}
