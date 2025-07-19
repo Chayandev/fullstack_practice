@@ -1,0 +1,94 @@
+<h1>Anuglar | If | Else | in HTML</h1>
+
+<button (click)="toggle()">Hide</button>
+<button (click)="toggle()">Show</button>
+
+@if(show){
+<div
+  style="width: 120px; height: 120px; background-color: blueviolet; margin: 8px"
+></div>
+}
+<br />
+<button (click)="toggleTwo()">
+  {{ showRed ? "Show Yellow" : "Show Red" }}
+</button>
+
+@if(showRed){
+<div
+  style="width: 120px; height: 120px; background-color: red; margin: 8px"
+></div>
+} @else {
+<div
+  style="width: 120px; height: 120px; background-color: yellow; margin: 8px"
+></div>
+}
+<hr />
+
+<h1>Anuglar ElseIf | in HTML</h1>
+<button (click)="handleColorBtnClick(1)">Red</button>
+<button (click)="handleColorBtnClick(2)">Green</button>
+<button (click)="handleColorBtnClick(3)">Blue</button>
+<button (click)="handleColorBtnClick(4)">Other</button>
+<input
+  type="number"
+  placeholder="Enter Number to Change color"
+  (input)="handleInputColor($event)"
+/>
+@if(color===1){
+<div
+  style="width: 120px; height: 120px; background-color: Red; margin: 8px"
+></div>
+} @else if (color===2) {
+<div
+  style="width: 120px; height: 120px; background-color: green; margin: 8px"
+></div>
+} @else if (color===3) {
+<div
+  style="width: 120px; height: 120px; background-color: blue; margin: 8px"
+></div>
+} @else{
+<div
+  style="width: 120px; height: 120px; background-color: black; margin: 8px"
+></div>
+}
+
+<hr />
+<h1>Anuglar Switch | in HTML</h1>
+<button (click)="handleColorChangeSwitch('red')">Red</button>
+<button (click)="handleColorChangeSwitch('green')">Green</button>
+<button (click)="handleColorChangeSwitch('yellow')">Blue</button>
+<button (click)="handleColorChangeSwitch('gold')">Gold</button>
+<input type="text" placeholder="Enter Color name" (input)=" handleColorInputText($event)">
+@switch (col) { @case ('red') {
+<div style="width: 120px; height: 120px; background-color: Red; margin: 8px">
+  Red
+</div>
+} @case ('green') {
+<div style="width: 120px; height: 120px; background-color: green; margin: 8px">
+  Green
+</div>
+} @case ('blue') {
+<div style="width: 120px; height: 120px; background-color: blue; margin: 8px">
+  Blue
+</div>
+} @default {
+<div style="width: 120px; height: 120px; background-color: black; margin: 8px; color: white;">
+  No Color Match
+</div>
+} }
+
+<hr>
+<h1>For loop in Angular</h1>
+
+@for (user of users; track user; let id=$index) {
+   <h2><span></span>{{user}}</h2>
+}
+<div style="display: flex; justify-content: space-between;">
+@for (student of students; track student.rollNo; let idx=$index) {
+  <div>
+    <h3>{{student.name}}</h3>
+    <p>{{student.rollNo}}</p>
+    <button (click)="getId(idx)">Get Id</button>
+  </div>
+}
+</div>
