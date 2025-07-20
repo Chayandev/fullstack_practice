@@ -1,0 +1,17 @@
+<div class="content">
+  <h1>Todo List</h1>
+  <div class="dispaly-together">
+    <input type="text" [(ngModel)]="task" placeholder="Enter task" id="task">
+    <button id="btn" (click)="addTodo()">Add Task</button>
+    </div>
+
+  <div class="todos">
+    @for (todo of todos; track todo.id) {
+      <ul class="todo">
+        <li>{{todo.id}}</li>
+        <li>{{todo.task}}</li>
+        <button class="delete-btn" (click)="deleteTodo(todo.id)">Delete</button>
+      </ul>
+    }
+  </div>
+</div>
