@@ -1,0 +1,12 @@
+<h1>
+Dynamic Style in Angular
+</h1>
+
+<h3 
+[style.backgroundColor]="bgColor"
+[style.fontSize.pt]="fontSize">
+Dynamic styled line
+</h3>
+
+<p [style.fontSize]="zoom()?'50px':'30px'">Hello Zoom</p>
+<button (click)="zoom.set(!zoom())">Zoom</button>

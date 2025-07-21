@@ -1,0 +1,40 @@
+<h1 *ngIf="show">Hello Directives</h1>
+<!-- NgFor -->
+<ul>
+  <li *ngFor="let sData of studentsData">
+    {{sData.name}}, {{sData.rollNo}}
+    <ol>
+      <li *ngFor="let mark of sData.semMarks">
+        {{mark}}
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<div *ngIf="!loggedIn; else elseBlock">
+  <a href="/">login</a>
+</div>
+<ng-template #elseBlock>
+  <a href="">logout</a>
+</ng-template>
+<hr>
+<button (click)="handleColorChangeSwitch('red')">Red</button>
+<button (click)="handleColorChangeSwitch('green')">Green</button>
+<button (click)="handleColorChangeSwitch('blue')">Blue</button>
+<button (click)="handleColorChangeSwitch('gold')">Gold</button>
+
+<div [ngSwitch]="color">
+  <div *ngSwitchCase="'red'" style="width: 120px; height: 120px; background-color: Red; margin: 8px">
+  Red
+</div>
+<div *ngSwitchCase="'green'" style="width: 120px; height: 120px; background-color: green; margin: 8px">
+  Green
+</div>
+
+<div *ngSwitchCase="'blue'" style="width: 120px; height: 120px; background-color: blue; margin: 8px">
+  Blue
+</div>
+<div *ngSwitchDefault>
+  No Color Match
+</div>
+</div>
