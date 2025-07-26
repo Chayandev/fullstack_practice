@@ -1,0 +1,32 @@
+<h1>Angular Data flow</h1>
+<app-user [user]="selectedUser"></app-user>
+<select [(ngModel)]="selectedUser">
+  <option value="chayandev bera">Chayandev Bera</option>
+  <option value="raj mondal">Raj Mondal</option>
+  <option value="souvik bhat">Souvik Bhat</option>
+  <option value="urbi chak">Urbi Chak</option>
+</select>
+
+<hr>
+<h2>UserData</h2>
+@for (user of userData; track user.rollNo) {
+  <app-user-data [userData]="user"></app-user-data>
+}
+<!-- <select (change)="onUserChange($event)">
+  <option value="chayandev bera">Chayandev Bera</option>
+  <option value="raj mondal">Raj Mondal</option>
+  <option value="souvik bhat">Souvik Bhat</option>
+  <option value="urbi chak">Urbi Chak</option>
+</select>
+
+<app-user [user]="selectedUser"></app-user> -->
+
+<hr>
+
+<h2>Data of child to parent</h2>
+
+<app-child-to-parent (getUsers)="handleUsersFromChild($event)"></app-child-to-parent>
+
+@for (user of users; track user) {
+  <h2>{{user}}</h2>
+}

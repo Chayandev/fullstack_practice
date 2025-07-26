@@ -419,8 +419,10 @@ export class FormComponent {
 - **ngModel**: Enables two-way binding for template-driven forms, ideal for simple use cases.
 
 
-## What is Directives , and discuss diffrent types of directives
+## What is Directives , and discuss diffrent types of directives.
 
-### What is reactive form 
+### What is reactive form .
 
-### why to user formGrouping
+### why to user formGrouping.
+
+### What is template driven form.
