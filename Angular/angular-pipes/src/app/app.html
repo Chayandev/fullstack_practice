@@ -1,0 +1,21 @@
+<h1>Angular Pipes</h1>
+
+<h5>{{title}}</h5>
+<h5>{{title | uppercase}}</h5>
+<h5>{{name | titlecase}}</h5>
+<h5>{{name | lowercase}}</h5>
+
+
+<h5>{{date | date}}</h5>
+<h5>{{date | date:'fullDate'}}</h5>
+<h5>{{date | date:"hh:mm:ss"}}</h5>
+
+<h4>{{amount | currency}}</h4>
+<h4>{{amount | currency:"EUR"}}</h4>
+<h4>{{amount | currency:"INR"}}</h4>
+
+
+<hr>
+<h1>Custom Pipes | currency converter</h1>
+
+<h4>{{amount | currencyconverter:12}}</h4>
