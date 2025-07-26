@@ -420,3 +420,7 @@ export class FormComponent {
 
 
 ## What is Directives , and discuss diffrent types of directives
+
+### What is reactive form 
+
+### why to user formGrouping
