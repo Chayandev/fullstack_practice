@@ -1,0 +1,18 @@
+<h1>Services in Angular</h1>
+
+@for (product of products; track $index) {
+  <div style="background-color: skyblue; margin: 5px; padding: 10px;">
+    <h4>{{product.name}} by {{product.brand}}</h4>
+    <h5>Price:{{product.price | currency:'INR'}}</h5>
+  </div>
+}
+
+
+<button (click)="getProductList()">Get Product from Api</button>
+@for (product of productList; track $index) {
+  <div style="background-color: skyblue; margin: 5px; padding: 10px;">
+    <h4>{{product.title}} by {{product.brand}}</h4>
+    <h5>Price:{{product.price | currency:'INR'}}</h5>
+    <img src="{{product.images}}" alt="error" width="120px">
+  </div>
+}

@@ -1,0 +1,5 @@
+<h2>Angular Lifecycle | Parent</h2>
+@if (parentCount<5) {
+<app-counter [parentCount]="parentCount"></app-counter>
+}
+<button (click)="updateParentCounter()">Parent Counter:{{parentCount}}</button>
