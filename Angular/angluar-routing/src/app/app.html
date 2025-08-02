@@ -7,5 +7,11 @@
 </ul>
 
 <!-- if we have a route called defautl route for home with path "/" for that we can do like this that, we haev to sethte routerLinkActiveOptions={exact} -->
+<a [routerLink]="['profile',{name:'Chayandev Bera'}]">Profile</a>
+<button (click)="getUserProfile()">Go to Profile</button>
 
-<router-outlet/>
+@for (user of users; track user.id) {
+<li><a routerLink="profile/{{user.id}}/{{user.name}}">{{user.name}}
+  </a></li>
+}
+<router-outlet />
