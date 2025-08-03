@@ -29,8 +29,8 @@ print(course_name[:])  # thsi give the entire copy of the string
 
 
 # Formating string
-first = "Chayandev"
-last = "Bera"
+first = " Chayandev"
+last = "Bera "
 full = f"{first} {last}"  # This is how we have to format string
 exp = f"{len(first)} {2+2}"
 print(exp)
@@ -40,4 +40,19 @@ print(full)
 print(full.upper())
 print(full.lower())
 print(full.title())
-print(full.strip())
+print(full.strip())  # this will remove the white space, at both side of the string
+
+# lstrip() and rstrip() will removethe in left or right side.
+print(full.lstrip())  # remove left space
+print(full.rstrip())  # remove right space
+
+print(full.find("dev"))  # return the first index of occurance of this string
+print(full[7])
+
+# as its a case sensetive so, it will just return -1 as the D is not there
+print(full.find("Dev"))
+
+# return a new strign with repcaed characer dose  not modify the actual string;
+print(full.replace("d", "D"))
+print(full)
+print("dev" in full)
