@@ -1,0 +1,16 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "This is the GraphQL learning/practice",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chayandev Bera",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^5.3.0",
+    "graphql": "^16.12.0"
+  }
+}
