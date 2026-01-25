@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account activation</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #4a4a4a;
+        line-height: 1.6;
+        margin: 12px 0;
+    }
+
+    .activation-code {
+    width: fit-content;
+        background-color: #f1f5ff;
+        color: #1a73e8;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 12px 18px;
+        text-align: center;
+        margin: 20px 0;
+        border-radius: 6px;
+        letter-spacing: 2px;
+    }
+
+    .activation-link {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .activation-link a {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #1a73e8;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .activation-link a:hover {
+        background-color: #155ab6;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 22px;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Account Activation</h1>
+        <p class="greeting"></p>
+        <p>Thank you for signing up! PLease use the follwing activation code to activate your account</p>
+        <div class="activation-code"><span></span></div>
+        <div class="activation-link">
+            <a href="" target="_blank">Activate your account</a>
+        </div>
+    </div>
+</body>
+</html>
