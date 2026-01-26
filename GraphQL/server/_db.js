@@ -1,6 +1,6 @@
 // _db.js
 
-export const games = [
+const games = [
   {
     id: "1",
     title: "God of War Ragnarök",
@@ -23,7 +23,7 @@ export const games = [
   },
 ];
 
-export const authors = [
+const authors = [
   {
     id: "1",
     name: "John Doe",
@@ -41,7 +41,7 @@ export const authors = [
   },
 ];
 
-export const reviews = [
+const reviews = [
   {
     id: "1",
     rating: 9,
@@ -78,3 +78,6 @@ export const reviews = [
     author_id: "2",
   },
 ];
+
+
+export default {games,authors,reviews}

@@ -3,20 +3,27 @@ export const typeDefs = `#graphql
      id: ID! # the exclamation mark means this field is non-nullable
      title: String!
      platform: [String]!
+     reviews:[Review!]
     }
     type Review {
      id:ID!
      raing:Int!,
      content:String!
+     auhtor:Author!
+     game:Game!
    }
     type Author{
      id:ID!
      name:String!
      verified:Boolean
+     reviews:[Review!]
    }
     type Query { #this is the defination of the graph entry point which need to be mapped with the resolver fucntions
      games: [Game] 
      reviews:[Review]
      authors:[Author]
+     game(id:ID!):Game
+     review(id:ID!):Review
+     author(id:ID!):Author
     }
 `;
