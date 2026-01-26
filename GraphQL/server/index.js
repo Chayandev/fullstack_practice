@@ -39,11 +39,37 @@ const resolvers = {
       return db.games.find((game) => game.id === parent.game_id);
     },
   },
-  Author:{
-    reviews(parent){
-      return db.reviews.filter((review)=>review.author_id===parent.id);
+  Author: {
+    reviews(parent) {
+      return db.reviews.filter((review) => review.author_id === parent.id);
+    },
+  },
+  Mutation: {
+    deleteGame(_, args) {
+      db.games = db.games.filter((game) => game.id !== args.id);
+      return db.games;
+    },
+    addGame(_, args) {
+      const newGame = {
+        id: String(db.games.length + 1),
+        ...args.game,
+      };
+      db.games.push(newGame);
+      return newGame;
+    },
+    updateGame(_, args) {
+      const gameIndex = db.games.findIndex((game) => game.id === args.id);    
+      if (gameIndex === -1) {
+        throw new Error("Game not found");
+      }   
+      const updatedGame = {
+        ...db.games[gameIndex],
+        ...args.updatedGame,    
+      }; // merge existing game data with updated data
+      db.games[gameIndex] = updatedGame;    
+      return updatedGame;
     }
-  }
+  },
 };
 
 // server setup
