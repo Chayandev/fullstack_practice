@@ -10,7 +10,9 @@ from langchain_core.output_parsers import StrOutputParser
 
 parser=StrOutputParser()
 prompt=PromptTemplate(
-    template="Write a 5 line Poem on the topic {topic}"
+    template="Write a 5 line Poem on the topic {topic}",
+    input_variables=['topic']
+
 )
 
 chain=prompt | chat | parser
