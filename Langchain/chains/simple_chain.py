@@ -4,7 +4,7 @@ from pathlib import Path
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from model import chat
+from model import QwenChat
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
@@ -15,7 +15,7 @@ prompt=PromptTemplate(
 
 )
 
-chain=prompt | chat | parser
+chain=prompt | QwenChat | parser
 result=chain.invoke({'topic': "Nature"})
 chain.get_graph().print_ascii() # to visualize the chain graph
 print("Poem: ", result)

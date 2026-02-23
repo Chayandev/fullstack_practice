@@ -6,7 +6,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from model import chat
+from model import LamaChat as chat
 
 # 1s prompt -> Detailed respot
 template1=PromptTemplate(
