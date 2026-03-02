@@ -1,6 +1,6 @@
 """
-RAG (Retrieval-Augmented Generation) Notes
-=========================================
+RAG (Retrieval-Augmented Generation) COMPLETE Notes
+===================================================
 
 Why NOT to Use Fine-Tuning:
 ---------------------------
@@ -50,24 +50,54 @@ Latest Model Context Windows (March 2026):
 | Mixtral 8x22B      | 64K tokens        | Mistral efficient         |
 | Command R+         | 128K tokens       | Cohere enterprise         |
 
-RAG Architecture:
------------------
-1. Query → Embedding → Vector Search
-2. Retrieve top-K relevant chunks
-3. Augment prompt: "Use this context: {retrieved_docs}"
-4. Generate response grounded in retrieved knowledge
+RAG System Creation Steps (Complete Pipeline)
+=============================================
 
-Key Benefits:
-- Fresh knowledge without retraining
-- Enterprise data integration
-- Citation tracking (traceability)
-- Cost-effective vs. fine-tuning
-- Handles proprietary/confidential data
+1. INDEXING (Prepare Knowledge Base for Efficient Search)
+---------------------------------------------------------
+Prepares documents for fast retrieval at query time (4 sub-steps):
 
-Use Cases:
-- Customer support (company docs)
-- Legal research (case law)
-- Medical diagnosis (research papers)
-- Code assistance (private repos)
-- Any domain with external knowledge needs
-"""
+   a) Document Ingestion
+   - Load raw data: PDFs, docs, web pages, CSVs, code repos, etc.
+   - Handle multiple formats (parsers for each type)
+   - Clean/extract text content
+   
+   b) Text Chunking
+   - Split large docs into smaller, semantically coherent chunks
+   - Methods: Fixed-size, sentence-based, recursive, semantic
+   - Typical size: 200-1000 tokens per chunk
+   - Add overlap (50-100 tokens) for context preservation
+   
+   c) Embedding Generation
+   - Convert text chunks → dense numerical vectors (embeddings)
+   - Embedding models: OpenAI text-embedding-3-large, 
+                     sentence-transformers, Cohere embed-english-v3.0
+   - Vector dim: 768-4096 (model dependent)
+   - Captures semantic meaning: "king - man + woman ≈ queen"
+   
+   d) Store in Vector Database
+   - Persist (chunk_text, embedding_vector, metadata) tuples
+   - Vector DBs: Pinecone, Weaviate, Qdrant, Chroma, FAISS
+   - Enables fast approximate nearest neighbor (ANN) search
+
+2. RETRIEVAL (Find Relevant Context)
+------------------------------------
+- Generate embedding for user query (same model as indexing)
+- Vector similarity search: cosine similarity, Euclidean distance
+- Retrieve top-K results (K=3-10 typically)
+- Optional: Hybrid search (vector + keyword/BM25)
+- Reranking: Cross-encoder to refine top results
+
+3. AUGMENTATION (Enrich the Prompt)
+-----------------------------------
+- Combine retrieved chunks + original query
+- Prompt template:
+- Add instructions: "Be specific, cite sources, don't hallucinate"
+- Handle token limits: truncate/summarize if needed
+
+4. GENERATION (Produce Final Answer)
+------------------------------------
+- Feed augmented prompt to LLM (GPT-4, Claude, Llama, etc.)
+- Generate grounded response using retrieved context
+- Optional: Chain multiple retrieval-generation cycles
+- Post-process: Extract citations, format response
