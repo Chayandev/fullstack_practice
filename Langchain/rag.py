@@ -101,3 +101,4 @@ Prepares documents for fast retrieval at query time (4 sub-steps):
 - Generate grounded response using retrieved context
 - Optional: Chain multiple retrieval-generation cycles
 - Post-process: Extract citations, format response
+"""
