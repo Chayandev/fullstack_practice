@@ -1,3 +1,10 @@
+## What is LangGhraph
+LangGraph is an orchestration framwork that enables you to build stateful,multistep and event driven workflows using language modles(LLMs). it's ideal for designing both single agent andd multi agent agentic AI applications.
+
+Think of LangGraph as a flowchart engine for LLMs, you define the steps(nodes), how they're connected(edges) and the logic hat governs the transitioons, LangGraph takes care of state management, conditionla, branching , looping, pausing/resuming and fault recovery--- features essestials for building robust production grade AI systems.
+
+It enables advanced feature like parallerlism, loops, branching, memory and reusability -- making it ideal for agentic and production-grade AI applications.
+
 ## Why LangGraph?
 
 LangGraph addresses limitations in LangChain for building complex, stateful, and dynamic AI workflows. It provides a graph-based framework where nodes represent functions (e.g., LLM calls, tools) and edges define the flow of execution, enabling more flexible and robust applications.
@@ -53,11 +60,21 @@ Key differences:
   - Modularity: Reuse and combine workflow components easily.
 
 ## Observability
-
+Observability referes to how easily you can monitor , debug and understand what your workflow is doing at runtime.
 - LangGraph offers enhanced observability features:
   - Built-in tracing: Track execution flow, state changes, and node outputs.
   - Debugging tools: Visualize graph execution and identify bottlenecks.
   - Logging: Comprehensive logging of events, errors, and performance metrics.
   - Integration with monitoring tools for production deployments.
+
+## Should we still use LangChain
+Yes, LangRaph is built on top of LangGraph --  it dose'nt replace it.
+you still use LangChain components like:
+  1.ChatOpenAI(LLMs)
+  2.PromptTemplate
+  3.Retrivers
+  4.DocumentLoaders
+  5.Tools etc.
+LangGraph handles workflow orchestration, while LangChain provides the building blocks for each step in theat workflow.
 
 
