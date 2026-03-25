@@ -1,0 +1,7 @@
+langchain
+langgraph
+langchain-huggingface
+transformers
+huggingface-hub
+python-dotenv
+grandalf
