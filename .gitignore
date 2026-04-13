@@ -118,4 +118,4 @@ tmp_uploads/
 # Keep node/yarn lock files in repo (do NOT ignore):
 # package-lock.json
 # yarn.lock
-#
+*.pdf
