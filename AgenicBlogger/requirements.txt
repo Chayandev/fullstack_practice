@@ -1,0 +1,15 @@
+langchain
+langgraph
+langchain-huggingface
+transformers
+huggingface-hub
+python-dotenv
+grandalf
+langchain-community
+langchain-core
+pypdf
+torch
+sentence-transformers
+faiss-cpu
+langchain-tavily
+langchain_groq
