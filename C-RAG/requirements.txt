@@ -12,3 +12,4 @@ torch
 sentence-transformers
 faiss-cpu
 langchain-tavily
+langchain_groq
